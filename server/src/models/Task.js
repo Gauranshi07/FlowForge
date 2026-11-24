@@ -43,6 +43,7 @@ const taskSchema = new mongoose.Schema(
 );
 
 taskSchema.index({ createdBy: 1, project: 1, createdAt: -1 });
+taskSchema.index({ createdBy: 1, updatedAt: -1, _id: -1 });
 taskSchema.set("toJSON", {
   transform(_document, value) {
     delete value.__v;

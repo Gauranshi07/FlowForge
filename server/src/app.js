@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { errorHandler, notFoundHandler } from "./middleware/errorMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 
@@ -25,6 +26,7 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 

@@ -2,7 +2,7 @@
 
 FlowForge is a full-stack project management platform starter built with React, Vite, Node.js, Express, and MongoDB. The client and server are maintained as separate applications.
 
-The backend includes JWT authentication, project management, and task management APIs.
+The backend includes JWT authentication, project management, task management, and dashboard analytics APIs.
 
 ## Requirements
 
@@ -39,7 +39,11 @@ All task endpoints require a JWT bearer token:
 - `PUT /api/tasks/:id` — update an owned task.
 - `DELETE /api/tasks/:id` — delete an owned task.
 
-Run backend validation tests from `server` with `npm run test:unit`. Run the MongoDB-backed API integration tests with `npm run test:integration`; the configured MongoDB deployment must be reachable and allow the current IP address.
+## Dashboard API
+
+- `GET /api/dashboard/summary` — return authenticated-user project and task statistics, per-project progress, and the five most recently updated tasks.
+
+Run backend validation tests from `server` with `npm run test:unit`. Run the MongoDB-backed task and dashboard integration tests with `npm run test:integration` and `npm run test:dashboard`; the configured MongoDB deployment must be reachable and allow the current IP address.
 
 ## Development
 

@@ -7,7 +7,8 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "test:unit": "node --test test/taskValidation.test.js",
-    "test:integration": "node --test test/tasks.integration.test.js"
+    "test:integration": "node --test test/tasks.integration.test.js",
+    "test:dashboard": "node --test test/dashboard.integration.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
