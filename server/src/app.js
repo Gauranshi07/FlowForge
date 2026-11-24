@@ -9,11 +9,23 @@ import taskRoutes from "./routes/taskRoutes.js";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-  }),
+const allowedOrigins = new Set(
+  [
+    "http://localhost:5173",
+    "https://flow-forge-12m6omm4x-build-sphere2.vercel.app",
+    process.env.CLIENT_URL,
+  ].filter(Boolean),
 );
+const corsOptions = {
+  origin(origin, callback) {
+    callback(null, !origin || allowedOrigins.has(origin));
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (_req, res) => {
