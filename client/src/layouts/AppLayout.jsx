@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   CheckSquare,
+  KanbanSquare,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -15,6 +16,7 @@ const navigation = [
   { label: "Overview", to: "/dashboard", icon: LayoutDashboard, end: true },
   { label: "Projects", to: "/projects", icon: FolderKanban },
   { label: "My Tasks", to: "/tasks", icon: CheckSquare },
+  { label: "Kanban", to: "/kanban", icon: KanbanSquare },
 ];
 
 const getInitials = (name = "") =>

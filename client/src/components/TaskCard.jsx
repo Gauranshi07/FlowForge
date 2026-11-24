@@ -29,7 +29,16 @@ const formatDate = (value) => {
   }).format(date);
 };
 
-export default function TaskCard({ task, projectName, onEdit, onDelete }) {
+export default function TaskCard({
+  task,
+  projectName,
+  onEdit,
+  onDelete,
+  dragHandle,
+  showEdit = true,
+  showDelete = true,
+  actionsDisabled = false,
+}) {
   return (
     <article className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-lg hover:shadow-slate-200/50 sm:p-6">
       <div className="flex items-start justify-between gap-3">
@@ -42,22 +51,29 @@ export default function TaskCard({ task, projectName, onEdit, onDelete }) {
           </h2>
         </div>
         <div className="flex shrink-0 items-center gap-1">
-          <button
-            type="button"
-            onClick={() => onEdit(task)}
-            aria-label={`Edit ${task.title}`}
-            className="rounded-lg p-2 text-slate-400 transition hover:bg-indigo-50 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-indigo-600"
-          >
-            <Pencil size={16} />
-          </button>
-          <button
-            type="button"
-            onClick={() => onDelete(task)}
-            aria-label={`Delete ${task.title}`}
-            className="rounded-lg p-2 text-slate-400 transition hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-2 focus-visible:outline-rose-500"
-          >
-            <Trash2 size={16} />
-          </button>
+          {dragHandle}
+          {showEdit && (
+            <button
+              type="button"
+              onClick={() => onEdit(task)}
+              disabled={actionsDisabled}
+              aria-label={`Edit ${task.title}`}
+              className="rounded-lg p-2 text-slate-400 transition hover:bg-indigo-50 hover:text-indigo-700 focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Pencil size={16} />
+            </button>
+          )}
+          {showDelete && (
+            <button
+              type="button"
+              onClick={() => onDelete(task)}
+              disabled={actionsDisabled}
+              aria-label={`Delete ${task.title}`}
+              className="rounded-lg p-2 text-slate-400 transition hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-2 focus-visible:outline-rose-500 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Trash2 size={16} />
+            </button>
+          )}
         </div>
       </div>
 
