@@ -2,13 +2,13 @@
 
 FlowForge is a full-stack project management platform starter built with React, Vite, Node.js, Express, and MongoDB. The client and server are maintained as separate applications.
 
-This repository contains only the initial project setup. No product features, API routes, database connection, or authentication flows have been implemented yet.
+The backend includes JWT authentication, project management, and task management APIs.
 
 ## Requirements
 
 - Node.js 20.19+ or 22.12+
 - npm
-- MongoDB (needed when database integration is added)
+- MongoDB Atlas or another MongoDB deployment
 
 ## Installation
 
@@ -27,7 +27,19 @@ Create a local backend environment file:
 Copy-Item .env.example .env
 ```
 
-Update `.env` with your local configuration when needed. Do not commit `.env` or put real credentials in `.env.example`.
+Set `MONGODB_URI` and a `JWT_SECRET` of at least 32 characters in `.env`. Do not commit `.env` or put real credentials in `.env.example`.
+
+## Tasks API
+
+All task endpoints require a JWT bearer token:
+
+- `POST /api/tasks` — create a task in a project owned by the authenticated user.
+- `GET /api/tasks` — list tasks, optionally filtered by `project`, `status` (`Todo`, `In Progress`, `Done`), and `priority` (`Low`, `Medium`, `High`).
+- `GET /api/tasks/:id` — retrieve an owned task.
+- `PUT /api/tasks/:id` — update an owned task.
+- `DELETE /api/tasks/:id` — delete an owned task.
+
+Run backend validation tests from `server` with `npm run test:unit`. Run the MongoDB-backed API integration tests with `npm run test:integration`; the configured MongoDB deployment must be reachable and allow the current IP address.
 
 ## Development
 

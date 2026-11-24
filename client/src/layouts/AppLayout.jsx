@@ -60,11 +60,6 @@ function SidebarContent({ user, onNavigate, onLogout }) {
             >
               <Icon size={18} className="shrink-0" />
               <span>{label}</span>
-              {label === "My Tasks" && (
-                <span className="ml-auto rounded-md bg-white/[0.07] px-1.5 py-0.5 text-[10px] font-semibold text-slate-400">
-                  Soon
-                </span>
-              )}
             </NavLink>
           ))}
         </nav>
